@@ -15,7 +15,6 @@ public class Pickable : MonoBehaviour
         {
             // enter interactable state, show UI feedback such as "Press E to interact" 
             collision.gameObject.GetComponent<PlayerInteraction>().CanInteract(this);
-
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -24,13 +23,12 @@ public class Pickable : MonoBehaviour
         {
             // enter interactable state, show UI feedback such as "Press E to interact" 
             collision.gameObject.GetComponent<PlayerInteraction>().RemoveInteraction(this);
-
         }
     }
     public void OnCollect()
     {
         Debug.LogFormat("{0} has been collected.", objectName);
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 }
 

@@ -19,13 +19,47 @@ public class PlayerInteraction : MonoBehaviour
             Debug.LogError("Missing inventory script in scene!!");
         }
     }
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (canInteract && interactableObjects.Count > 0)
+            {
+                if (inventory.HasSpace())
+                {
+                    inventory.Add(closestItem);
+                    interactableObjects.Remove(closestItem);
+
+                    closestItem.OnCollect(); // destroys the object.
+                }
+            }
+        }
+
+        if (interactableObjects.Count > 0)
+        {
+            // calculate closest distance item
+            float closestDist = 9999;
+            Pickable currClosest = interactableObjects[0];
+
+            for (int i = 0; i < interactableObjects.Count; i++)
+            {
+                var dist = Vector2.Distance(transform.position, interactableObjects[i].transform.position);
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    currClosest = interactableObjects[i];
+                }
+            }
+            closestItem = currClosest;
+        }
+    }
+
 
     public void CanInteract(Pickable item)
     {
         canInteract = true;
         interactableObjects.Add(item);
 
-        // calculate closest distance item
     }
     public void RemoveInteraction(Pickable item)
     {
@@ -39,20 +73,5 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            if(canInteract && interactableObjects.Count > 0)
-            {
-                if (inventory.HasSpace())
-                {
-                    inventory.Add(closestItem);
-                    interactableObjects.Remove(closestItem);
-
-                    closestItem.OnCollect(); // destroys the object.
-                }
-            }
-        }
-    }
+   
 }

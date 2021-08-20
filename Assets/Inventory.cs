@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 // game controller/manager
 public class Inventory : MonoBehaviour
@@ -13,17 +10,19 @@ public class Inventory : MonoBehaviour
     // one slot
     // item of type pickable
     public Pickable item = null;
-
+    bool hasSpace = true;
 
     // pickable has actions in itself
 
     // Add func
-    public void Add(Pickable item)
+    public void Add(Pickable pickedItem)
     {
-        this.item = item;
+        item = pickedItem;
+        hasSpace = false;
+        Debug.Log("Player has item: " + item.objectName);
 
         // show this item's icon on UI
-        itemIcon.sprite = item.icon;
+        itemIcon.sprite = pickedItem.icon;
     }
 
     // TODO Remove func
@@ -31,7 +30,7 @@ public class Inventory : MonoBehaviour
     // has item x?
     public bool HasSpace()
     {
-        return item == null;
+        return hasSpace;
     }
 
 }
