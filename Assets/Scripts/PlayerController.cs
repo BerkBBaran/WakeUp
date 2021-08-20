@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,11 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D playerRB;
     public Animator playerAnimator;
     public float moveSpeed = 1f;
-    
 
+    private bool facingLeft = false;
     private bool facingRight = true;
+    private bool facingTop = false;
+    private bool facingDown = false;
 
     Vector2 movement;
 
@@ -30,36 +33,62 @@ public class PlayerController : MonoBehaviour
 
         //Left Right
 
-        if (playerRB.velocity.x < 0 && facingRight)
+        if (movement.x < 0 && !facingLeft)
         {
-            FlipFace();
+            TurnLeft();
         }
-        else if (playerRB.velocity.x > 0 && !facingRight)
+        else if (movement.x > 0 && !facingRight)
         {
-            FlipFace();
+            TurnRight();
         }
 
         //Top Down
 
-        if (playerRB.velocity.x < 0 && facingRight)
+        else if (movement.y < 0 && !facingDown)
         {
-            //TurnTop();
+            TurnTop();
         }
-        else if (playerRB.velocity.x > 0 && !facingRight)
+        else if (movement.y > 0 && !facingTop)
         {
-            //TurnDown();
+            TurnDown();
         }
 
 
     }
-
     private void FixedUpdate()
     {
-        playerRB.MovePosition(playerRB.position + movement  * moveSpeed);
+        playerRB.MovePosition(playerRB.position + movement * moveSpeed);
     }
 
-    private void FlipFace()
+    //Face Directions
+    private void TurnDown()
     {
+        facingLeft = false;
+        facingRight = false;
+        facingTop = false;
+        facingDown = true;
 
+    }
+    private void TurnTop()
+    {
+        facingLeft = false;
+        facingRight = false;
+        facingTop = true;
+        facingDown = false;
+    }
+
+    private void TurnLeft()
+    {
+        facingLeft = true;
+        facingRight = false;
+        facingTop = false;
+        facingDown = false;
+    }
+    private void TurnRight()
+    {
+        facingLeft = false;
+        facingRight = true;
+        facingTop = false;
+        facingDown = false;
     }
 }
