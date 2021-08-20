@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Pickable : MonoBehaviour
@@ -7,6 +9,12 @@ public class Pickable : MonoBehaviour
     public string objectName = "Lemon";
     public Sprite icon;
 
+    //Set Unity Editor !!!!!! may be change
+    public string objectText;
+
+
+
+    //Button !!!!!!!!! may be change
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,6 +22,7 @@ public class Pickable : MonoBehaviour
         {
             // enter interactable state, show UI feedback such as "Press E to interact" 
             collision.gameObject.GetComponent<PlayerInteraction>().CanInteract(this);
+
         }
     }
     protected void OnTriggerExit2D(Collider2D collision)
@@ -22,6 +31,7 @@ public class Pickable : MonoBehaviour
         {
             // enter interactable state, show UI feedback such as "Press E to interact" 
             collision.gameObject.GetComponent<PlayerInteraction>().RemoveInteraction(this);
+
         }
     }
     public virtual void OnInteract(PlayerInteraction playerInt)

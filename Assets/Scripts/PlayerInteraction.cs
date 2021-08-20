@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -11,6 +13,14 @@ public class PlayerInteraction : MonoBehaviour
 
     [HideInInspector] public List<Pickable> interactableObjects = null;
     public Pickable closestItem = null;
+
+    private int TriggerCount = 0;
+    private bool isCollided = false;
+
+    //!!!!!! may be change UI
+    private GameObject InteractableTextGO;
+    private GameObject eButton;
+    private TextMeshProUGUI InteractableTextTMP;
 
     public Inventory inventory;
     private void Awake()
@@ -25,6 +35,10 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void Start()
     {
+        // Find method may be change
+        eButton = GameObject.Find("eButton");
+        InteractableTextGO = GameObject.Find("InteractableText");
+        InteractableTextTMP = InteractableTextGO.GetComponent<TextMeshProUGUI>();
 
     }
     private void Update()
@@ -54,20 +68,13 @@ public class PlayerInteraction : MonoBehaviour
 
         if (interactableObjects.Count > 0)
         {
-            // calculate closest distance item
-            float closestDist = 9999;
-            Pickable currClosest = interactableObjects[0];
+            FindClosestItem();
+        }
 
-            for (int i = 0; i < interactableObjects.Count; i++)
-            {
-                var dist = Vector2.Distance(transform.position, interactableObjects[i].transform.position);
-                if (dist < closestDist)
-                {
-                    closestDist = dist;
-                    currClosest = interactableObjects[i];
-                }
-            }
-            closestItem = currClosest;
+        if(isCollided)
+        {   
+            if(closestItem != null)
+                InteractableTextTMP.text = closestItem.objectText;
         }
     }
 
@@ -76,6 +83,11 @@ public class PlayerInteraction : MonoBehaviour
     {
         canInteract = true;
         interactableObjects.Add(item);
+
+        // UI part 
+        TriggerCount++;
+        isCollided = true;
+        eButton.GetComponent<Image>().enabled = true;
 
     }
     public void RemoveInteraction(Pickable item)
@@ -88,8 +100,33 @@ public class PlayerInteraction : MonoBehaviour
                 canInteract = false;
             }
         }
-    }
- 
 
+        // UI part 
+        TriggerCount--;
+        if (TriggerCount == 0)
+        {
+            isCollided = false;
+            InteractableTextTMP.text = null;
+            eButton.GetComponent<Image>().enabled = false;
+        }
+    }
+    
    
+    private void FindClosestItem()
+    {
+        // calculate closest distance item
+        float closestDist = 9999;
+        Pickable currClosest = interactableObjects[0];
+
+        for (int i = 0; i < interactableObjects.Count; i++)
+        {
+            var dist = Vector2.Distance(transform.position, interactableObjects[i].transform.position);
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                currClosest = interactableObjects[i];
+            }
+        }
+        closestItem = currClosest;
+    }
 }
