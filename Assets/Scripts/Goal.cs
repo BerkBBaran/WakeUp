@@ -25,26 +25,43 @@ public class Goal : Pickable
 
         if (isComplete)
         {
+            if (playerInt.inventory.HasSpace())
+            {
+                playerInt.inventory.Add(playerInt.closestItem);
+                playerInt.interactableObjects.Remove(playerInt.closestItem);
+                Debug.LogFormat("{0} has been collected.", objectName);
+                gameObject.SetActive(false);
+            }
+
 
         }
         else // still has required items
         {
-            string itemName = inventory.item.objectName;
-            if (requiredItems.Contains(itemName))
+            if (inventory.item == null) //Has no Item
             {
-                // found a required item, use it for this Goal
-                inventory.RemoveItem();
-                requiredItems.Remove(itemName);
-                if (requiredItems.Count == 0)
-                {
-                    isComplete = true;
-                    // this goal is complete, maybe add the combined/completed version to inventory for use?
-                    inventory.Add(this);
-
-                    // maybe turn of sprite
-                    this.gameObject.SetActive(false);
-                }
+                //Cant Take glass, nothing happens
             }
+            else //Has Item
+            {
+                string itemName = inventory.item.objectName;
+                if (requiredItems.Contains(itemName))
+                {
+                    // found a required item, use it for this Goal
+                    inventory.RemoveItem();
+                    requiredItems.Remove(itemName);
+                    if (requiredItems.Count == 0)
+                    {
+                        isComplete = true;
+                        // this goal is complete, maybe add the combined/completed version to inventory for use?
+                        inventory.Add(this);
+
+                        // maybe turn of sprite
+                        this.gameObject.SetActive(false);
+                    }
+                }
+
+            }
+            
         }
 
         // decision parameters:

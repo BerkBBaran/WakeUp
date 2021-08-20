@@ -23,6 +23,10 @@ public class PlayerInteraction : MonoBehaviour
             Debug.LogError("Missing inventory script in scene!!");
         }
     }
+    private void Start()
+    {
+
+    }
     private void Update()
     {
         // Pick up item
@@ -85,6 +89,7 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
+ 
 
    
 }
