@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour
     // one slot
     // item of type pickable
     public Pickable item = null;
+
     bool hasSpace = true;
 
     // pickable has actions in itself
@@ -26,7 +27,14 @@ public class Inventory : MonoBehaviour
     }
 
     // TODO Remove func
+    public void RemoveItem()
+    {
+        item = null;
+        hasSpace = true;
 
+        // show this item's icon on UI
+        itemIcon.sprite = null;
+    }
     // has item x?
     public bool HasSpace()
     {

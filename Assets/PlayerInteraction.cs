@@ -5,10 +5,14 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     bool canInteract = false;
-    public List<Pickable> interactableObjects = null;
+
+    // Set in editor
+    public Transform dropPoint;
+
+    [HideInInspector] public List<Pickable> interactableObjects = null;
     public Pickable closestItem = null;
 
-    Inventory inventory;
+    public Inventory inventory;
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
@@ -21,17 +25,26 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void Update()
     {
+        // Pick up item
         if (Input.GetKeyUp(KeyCode.E))
         {
             if (canInteract && interactableObjects.Count > 0)
             {
-                if (inventory.HasSpace())
-                {
-                    inventory.Add(closestItem);
-                    interactableObjects.Remove(closestItem);
+                closestItem.OnInteract(this);
+            }
+        }
 
-                    closestItem.OnCollect(); // destroys the object.
-                }
+        // Drop item
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            if (!inventory.HasSpace())
+            {
+                // remove from inventory
+                // drop to ground
+                inventory.item.transform.position = dropPoint.position;
+                inventory.item.gameObject.SetActive(true);
+
+                inventory.RemoveItem();
             }
         }
 

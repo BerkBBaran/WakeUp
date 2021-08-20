@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class Pickable : MonoBehaviour
 {
     // needs collider
@@ -9,7 +8,7 @@ public class Pickable : MonoBehaviour
     public Sprite icon;
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -17,7 +16,7 @@ public class Pickable : MonoBehaviour
             collision.gameObject.GetComponent<PlayerInteraction>().CanInteract(this);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -25,18 +24,16 @@ public class Pickable : MonoBehaviour
             collision.gameObject.GetComponent<PlayerInteraction>().RemoveInteraction(this);
         }
     }
-    public void OnCollect()
+    public virtual void OnInteract(PlayerInteraction playerInt)
     {
-        Debug.LogFormat("{0} has been collected.", objectName);
-        gameObject.SetActive(false);
+        if (playerInt.inventory.HasSpace())
+        {
+            playerInt.inventory.Add(playerInt.closestItem);
+            playerInt.interactableObjects.Remove(playerInt.closestItem);
+            Debug.LogFormat("{0} has been collected.", objectName);
+            gameObject.SetActive(false);
+        }
     }
 }
 
 // pickable -- limon 
-// bardak -> limon, su, seker
-
-public class Goal
-{
-    List<string> requiredItems = new List<string>{ "Lemon", "Sugar" };
-
-}
