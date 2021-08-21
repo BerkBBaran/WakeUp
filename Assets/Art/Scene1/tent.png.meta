@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 59526bc9be8588343b5e815f79673179
+guid: a7641317c1c431f40b7266a9834d4c92
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8025649199667744028
-    second: Lemon_0
+      213: -6752567909215077633
+    second: tent_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -106,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lemon_0
+      name: tent_0
       rect:
         serializedVersion: 2
-        x: 586
-        y: 277
-        width: 494
-        height: 489
+        x: 0
+        y: 143
+        width: 1000
+        height: 771
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,8 +120,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1d0816ec65d06f60800000000000000
-      internalID: 8025649199667744028
+      spriteID: ffa7881634f0a42a0800000000000000
+      internalID: -6752567909215077633
       vertices: []
       indices: 
       edges: []
