@@ -9,12 +9,8 @@ public class Pickable : MonoBehaviour
     public string objectName = "Lemon";
     public Sprite icon;
 
-    //Set Unity Editor !!!!!! may be change
     public string objectText;
 
-
-
-    //Button !!!!!!!!! may be change
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
@@ -45,5 +41,3 @@ public class Pickable : MonoBehaviour
         }
     }
 }
-
-// pickable -- limon 

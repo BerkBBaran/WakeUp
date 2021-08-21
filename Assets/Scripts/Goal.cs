@@ -32,8 +32,6 @@ public class Goal : Pickable
                 Debug.LogFormat("{0} has been collected.", objectName);
                 gameObject.SetActive(false);
             }
-
-
         }
         else // still has required items
         {
@@ -53,10 +51,10 @@ public class Goal : Pickable
                     {
                         isComplete = true;
                         // this goal is complete, maybe add the combined/completed version to inventory for use?
-                        inventory.Add(this);
+                        //inventory.Add(this);
 
-                        // maybe turn of sprite
-                        this.gameObject.SetActive(false);
+                        //// maybe turn of sprite
+                        //this.gameObject.SetActive(false);
                     }
                 }
 

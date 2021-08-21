@@ -8,20 +8,21 @@ public class PlayerInteraction : MonoBehaviour
 {
     bool canInteract = false;
 
-    // Set in editor
+    // References that are set inside the editor
+    [Header("Fill these  references")]
     public Transform dropPoint;
+    public Image eButton;
+    public TextMeshProUGUI InteractableTextTMP;
 
-    [HideInInspector] public List<Pickable> interactableObjects = null;
+    [Header("debug fields")]
+    public List<Pickable> interactableObjects = null;
     public Pickable closestItem = null;
+    public Inventory inventory;
 
     private int TriggerCount = 0;
     private bool isCollided = false;
 
-    //!!!!!! may be change UI
-    public Image eButton;
-    public TextMeshProUGUI InteractableTextTMP;
 
-    public Inventory inventory;
 
     private void Awake()
     {
