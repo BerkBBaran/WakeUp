@@ -19,11 +19,20 @@ public class Dragable : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // enter interactable state, show UI feedback such as "Press E to interact" 
             collision.gameObject.GetComponent<PlayerInteraction>().CanDrag(this);
 
         }
     }
+    protected void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // enter interactable state, show UI feedback such as "Press E to interact" 
+            collision.gameObject.GetComponent<PlayerInteraction>().RemoveCanDrag(this);
+
+        }
+    }
+
     public void OnDrag(PlayerInteraction playerInt)
     {
         transform.parent = playerInt.transform;
