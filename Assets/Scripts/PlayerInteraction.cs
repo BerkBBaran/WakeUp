@@ -18,11 +18,11 @@ public class PlayerInteraction : MonoBehaviour
     private bool isCollided = false;
 
     //!!!!!! may be change UI
-    private GameObject InteractableTextGO;
-    private GameObject eButton;
-    private TextMeshProUGUI InteractableTextTMP;
+    public Image eButton;
+    public TextMeshProUGUI InteractableTextTMP;
 
     public Inventory inventory;
+
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
@@ -35,10 +35,6 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void Start()
     {
-        // Find method may be change
-        eButton = GameObject.Find("eButton");
-        InteractableTextGO = GameObject.Find("InteractableText");
-        InteractableTextTMP = InteractableTextGO.GetComponent<TextMeshProUGUI>();
 
     }
     private void Update()

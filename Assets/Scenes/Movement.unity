@@ -906,6 +906,8 @@ MonoBehaviour:
   dropPoint: {fileID: 1373177327}
   interactableObjects: []
   closestItem: {fileID: 0}
+  eButton: {fileID: 226930617}
+  InteractableTextTMP: {fileID: 2128032078}
   inventory: {fileID: 0}
 --- !u!1 &866937701
 GameObject:
