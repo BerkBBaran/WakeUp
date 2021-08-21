@@ -26,7 +26,10 @@ public class DialogController : MonoBehaviour
         speakerName.gameObject.SetActive(false);
         // starts the dialog X secs after scene is loaded.
         // might wanna change this.
-        Invoke("StartTyping", 5f);
+        if(lines.Count > 0)
+        {
+            Invoke("StartTyping", 5f);
+        }
     }
 
     // Is also called when the player interacts with the Teddy bear in the scene.

@@ -10,26 +10,26 @@ public class PlayerInteraction : MonoBehaviour
     bool canDrag = false;
 
     // Set in editor
+    [Header("References")]
     public Transform dropPoint;
+    public Transform middlePoint;
+    public Image interactButton;
+    public TextMeshProUGUI InteractableTextTMP;
+    public GameObject spaceButton;
 
+
+    [HideInInspector] public Inventory inventory;
     [HideInInspector] public List<Pickable> interactableObjects = null;
-    [HideInInspector] public List<Dragable> dragableObjects = null;
-    public Pickable closestItem = null;
-    public Dragable closestDragable = null;
-    public Dragable carriedDragable = null; //currently carrying
-    public PlayerController plController;
+    [HideInInspector] public Pickable closestItem = null;
+
+    private List<Dragable> dragableObjects = null;
+    private Dragable closestDragable = null;
+    private Dragable carriedDragable = null; //currently carrying
+    private PlayerController plController;
 
     private int TriggerCount = 0;
     private bool isCollided = false;
     private bool isDraging = false;
-
-
-    //!!!!!! may be change UI
-    public Image eButton;
-    public TextMeshProUGUI InteractableTextTMP;
-    public GameObject spaceButton;
-
-    public Inventory inventory;
 
     private void Awake()
     {
@@ -42,10 +42,6 @@ public class PlayerInteraction : MonoBehaviour
         {
             Debug.LogError("Missing inventory script in scene!!");
         }
-    }
-    private void Start()
-    {
-
     }
     private void Update()
     {
@@ -118,7 +114,7 @@ public class PlayerInteraction : MonoBehaviour
         // UI part 
         TriggerCount++;
         isCollided = true;
-        eButton.GetComponent<Image>().enabled = true;
+        interactButton.GetComponent<Image>().enabled = true;
 
     }
     public void RemoveInteraction(Pickable item)
@@ -138,7 +134,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             isCollided = false;
             InteractableTextTMP.text = null;
-            eButton.GetComponent<Image>().enabled = false;
+            interactButton.GetComponent<Image>().enabled = false;
         }
     }
 
@@ -151,7 +147,7 @@ public class PlayerInteraction : MonoBehaviour
 
         for (int i = 0; i < interactableObjects.Count; i++)
         {
-            var dist = Vector2.Distance(transform.position, interactableObjects[i].transform.position);
+            var dist = Vector2.Distance(middlePoint.position, interactableObjects[i].transform.position);
             if (dist < closestDist)
             {
                 closestDist = dist;
@@ -168,7 +164,7 @@ public class PlayerInteraction : MonoBehaviour
 
         for (int i = 0; i < dragableObjects.Count; i++)
         {
-            var dist = Vector2.Distance(transform.position, dragableObjects[i].transform.position);
+            var dist = Vector2.Distance(middlePoint.position, dragableObjects[i].transform.position);
             if (dist < closestDist)
             {
                 closestDist = dist;
