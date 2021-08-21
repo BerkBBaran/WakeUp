@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     public Animator playerAnimator;
     public float moveSpeed = 1f;
 
+    //private components
+    SpriteRenderer myRender;
+
+    private bool facingRight = false;
     private bool facingLeft = false;
-    private bool facingRight = true;
-    private bool facingTop = false;
     private bool facingDown = false;
 
     Vector2 movement;
@@ -21,6 +23,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        myRender = GetComponent<SpriteRenderer>();
+        
         //playerAnimator = GetComponent<Animator>();
     }
 
@@ -33,62 +37,64 @@ public class PlayerController : MonoBehaviour
 
         //Left Right
 
-        if (movement.x < 0 && !facingLeft)
+        if (Math.Abs(movement.x) < 0.01 && Math.Abs(movement.y) < 0.01 && !facingDown)
+        {
+            LookDown();
+        }
+        
+        else if (movement.x < 0 && !facingLeft)
         {
             TurnLeft();
         }
-        else if (movement.x > 0 && !facingRight)
+        else if ( movement.x > 0 && !facingRight)
+        {
+            TurnRight();
+        }
+        else if ((Math.Abs(movement.y) > 0.01) && !facingRight && (Math.Abs(movement.x) < 0.01))
         {
             TurnRight();
         }
 
-        //Top Down
 
-        else if (movement.y < 0 && !facingDown)
-        {
-            TurnTop();
-        }
-        else if (movement.y > 0 && !facingTop)
-        {
-            TurnDown();
-        }
 
 
     }
+
+    private void LookDown()
+    {
+        playerAnimator.SetBool("isWalking",false);
+
+        facingDown = true;
+        facingRight = false;
+        facingLeft = false;
+    }
+
+    private void TurnLeft()
+    {
+       
+        playerAnimator.SetBool("isWalking", true);
+        myRender.flipX = false;
+
+        facingDown = false;
+        facingRight = false;
+        facingLeft = true;
+    }
+    private void TurnRight()
+    {
+        
+        playerAnimator.SetBool("isWalking", true);
+        myRender.flipX = true;
+
+        facingDown = false;
+        facingRight = true;
+        facingLeft = false;
+    }
+
     private void FixedUpdate()
     {
         playerRB.MovePosition(playerRB.position + movement * moveSpeed);
     }
 
     //Face Directions
-    private void TurnDown()
-    {
-        facingLeft = false;
-        facingRight = false;
-        facingTop = false;
-        facingDown = true;
 
-    }
-    private void TurnTop()
-    {
-        facingLeft = false;
-        facingRight = false;
-        facingTop = true;
-        facingDown = false;
-    }
-
-    private void TurnLeft()
-    {
-        facingLeft = true;
-        facingRight = false;
-        facingTop = false;
-        facingDown = false;
-    }
-    private void TurnRight()
-    {
-        facingLeft = false;
-        facingRight = true;
-        facingTop = false;
-        facingDown = false;
-    }
 }
