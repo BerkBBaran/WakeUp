@@ -7,12 +7,15 @@ using UnityEngine.UI;
 public class PlayerInteraction : MonoBehaviour
 {
     bool canInteract = false;
+    bool canDrag= false;
 
     // Set in editor
     public Transform dropPoint;
 
     [HideInInspector] public List<Pickable> interactableObjects = null;
     public Pickable closestItem = null;
+    public Dragable dragableItem = null;
+    public PlayerController plController;
 
     private int TriggerCount = 0;
     private bool isCollided = false;
@@ -27,6 +30,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         inventory = FindObjectOfType<Inventory>();
         interactableObjects = new List<Pickable>();
+        plController = FindObjectOfType<PlayerController>();
 
         if (inventory == null) 
         {
@@ -45,6 +49,23 @@ public class PlayerInteraction : MonoBehaviour
             if (canInteract && interactableObjects.Count > 0)
             {
                 closestItem.OnInteract(this);
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            if (canDrag) //Drag grab
+            {
+                canDrag = !canDrag;
+                dragableItem.OnDrag(this);
+                plController.moveSpeed /= 4;
+
+            }
+            else if(dragableItem != null)
+            {
+                dragableItem.LeaveDrag(this);
+                canDrag = !canDrag;
+                plController.moveSpeed *= 4;
             }
         }
 
@@ -125,4 +146,22 @@ public class PlayerInteraction : MonoBehaviour
         }
         closestItem = currClosest;
     }
+
+    //Drag
+
+    public void CanDrag(Dragable item)
+    {
+        
+        canDrag= true;
+        dragableItem = item;
+        /*
+        // UI part 
+        TriggerCount++;
+        isCollided = true;
+        eButton.GetComponent<Image>().enabled = true;
+        */
+
+    }
+
+
 }
