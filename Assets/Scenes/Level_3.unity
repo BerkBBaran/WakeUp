@@ -3026,7 +3026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2631845658895392304, guid: 48c3b60a539b45d47ae2cee78213dad1, type: 3}
       propertyPath: lines.Array.data[1].text
-      value: I wish you would be with me.
+      value: "I wish you could\u2019ve been with me."
       objectReference: {fileID: 0}
     - target: {fileID: 2631845658895392304, guid: 48c3b60a539b45d47ae2cee78213dad1, type: 3}
       propertyPath: lines.Array.data[2].text

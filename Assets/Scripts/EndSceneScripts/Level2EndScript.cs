@@ -5,6 +5,7 @@ using UnityEngine;
 public class Level2EndScript : MonoBehaviour
 {
     //set in unity editor
+    public GameObject poisonCloud;
     private Goal goal;
 
     //trigger
@@ -23,8 +24,7 @@ public class Level2EndScript : MonoBehaviour
         if(goal.requiredItems.Count == 0 && !isGameOver)
         {
             //Game Over
-            Debug.Log("Game Over");
-            Debug.Log(gameObject.name);
+            poisonCloud.SetActive(true);
             isGameOver = true;
             Invoke("EndGameWithDelay", 2f);
         }
