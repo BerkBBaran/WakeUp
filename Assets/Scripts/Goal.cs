@@ -42,6 +42,16 @@ public class Goal : Pickable
                 Debug.LogFormat("{0} has been collected.", objectName);
                 gameObject.SetActive(false);
             }
+            else
+            {
+                // show the item text on interact
+                // bittiginde eger hala elinde item varsa incorrectitemtext cikacak
+                overheadText.gameObject.SetActive(true);
+                overheadText.text = incorrectItemText;
+
+                StopAllCoroutines();
+                StartCoroutine(ShowOverheadText());
+            }
         }
         else // still has required items
         {
@@ -58,7 +68,8 @@ public class Goal : Pickable
                     inventory.RemoveItem();
                     requiredItems.Remove(itemName);
                     if (requiredItems.Count == 0)
-                    {
+                    {   
+                        
                         isComplete = true;
                         // this goal is complete, maybe add the combined/completed version to inventory for use?
                         //inventory.Add(this);
@@ -70,6 +81,7 @@ public class Goal : Pickable
                 else
                 {
                     // show the item text on interact
+
                     overheadText.gameObject.SetActive(true);
                     overheadText.text = incorrectItemText;
 

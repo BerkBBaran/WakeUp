@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level2EndScript : MonoBehaviour
 {
-
+    //set in unity editor
     private Goal goal;
 
     //trigger
@@ -16,8 +16,9 @@ public class Level2EndScript : MonoBehaviour
         
     }
     private void Awake()
-    {
-        goal = FindObjectOfType<Goal>();
+    {   
+        //find with name !!!!!!!
+        goal = GameObject.Find("GoalBeher").GetComponent<Goal>();
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public class Level2EndScript : MonoBehaviour
         {
             //Game Over
             Debug.Log("Game Over");
+            Debug.Log(gameObject.name);
             isGameOver = true;
         }
     }
