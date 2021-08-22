@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     public int timeOut = 300; // 5 mins
 
     public int remainingTime;
+    public PostProcessProfile profile;
+    public float defaultVignette = 0.42f;
 
     public TimerDisplay timerDisplay;
     private void Awake()
@@ -33,6 +36,9 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        var vig = profile.GetSetting<Vignette>();
+        vig.intensity.value = defaultVignette;
+
         Debug.Log("OnSceneLoaded: " + scene.name);
         if (scene.name == "Level_0")
         {

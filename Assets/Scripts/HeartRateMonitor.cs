@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class HeartRateMonitor : MonoBehaviour
 {
     public TextMeshProUGUI bpmText;
     public Animator heartRateAnim;
+    public GameObject dyingHeartAnim;
+
+    public PostProcessVolume postProcess;
 
     public float startingRate = 80;
     public float walkingLimit = 110;
@@ -138,6 +142,31 @@ public class HeartRateMonitor : MonoBehaviour
 
     private void EndGameWithDelay()
     {
+        pCont.moveSpeed = 0;
+
+        dyingHeartAnim.gameObject.SetActive(true);
+        StartCoroutine(CloseVignette());
+        //Invoke("EndLevel", 2.5f);
+    }
+    private void EndLevel()
+    {
         GameManager.Instance.EndLevel();
+    }
+    IEnumerator CloseVignette()
+    {
+        var vig = postProcess.sharedProfile.GetSetting<Vignette>();
+        float timePassed = 0;
+
+        float initVal = vig.intensity.value;
+        float dur = 2f;
+        while(timePassed < dur)
+        {
+            timePassed += Time.deltaTime;
+            float t = timePassed / dur;
+            vig.intensity.value = Mathf.Lerp(initVal, 2f, t);
+            yield return null;
+        }
+        yield return new WaitForSeconds(2f);
+        EndLevel();
     }
 }

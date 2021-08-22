@@ -393,6 +393,8 @@ MonoBehaviour:
   beeSfx: {fileID: 0}
   timeOut: 540
   remainingTime: 0
+  profile: {fileID: 11400000, guid: 22bd5d0aa0deb794b89664bec87e620c, type: 2}
+  defaultVignette: 0.42
   timerDisplay: {fileID: 0}
 --- !u!4 &323941070
 Transform:
