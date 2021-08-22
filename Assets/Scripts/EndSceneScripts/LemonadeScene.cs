@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class LemonadeScene : MonoBehaviour
 {
-    Inventory inventory;
+    private Inventory inventory;
+
+    //Reference
+    public GameObject character;
+    public GameObject bee;
+
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
@@ -26,9 +31,7 @@ public class LemonadeScene : MonoBehaviour
         {
             if (inventory.item !=null && inventory.item.objectName.Equals("Lemonade"))
             {
-                Debug.Log("Scene Over");
-                //End Scene (Dead) Animation
-                //Go next scene
+                bee.SetActive(true);
 
             }
                
