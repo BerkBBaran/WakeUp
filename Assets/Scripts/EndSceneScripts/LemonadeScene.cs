@@ -29,9 +29,13 @@ public class LemonadeScene : MonoBehaviour
                 Debug.Log("Scene Over");
                 //End Scene (Dead) Animation
                 //Go next scene
-
+                Invoke("EndGameWithDelay", 2f);
             }
                
         }
+    }
+    private void EndGameWithDelay()
+    {
+        GameManager.Instance.EndLevel();
     }
 }

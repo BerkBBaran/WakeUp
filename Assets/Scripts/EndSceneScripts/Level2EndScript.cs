@@ -34,7 +34,11 @@ public class Level2EndScript : MonoBehaviour
             Debug.Log("Game Over");
             Debug.Log(gameObject.name);
             isGameOver = true;
+            Invoke("EndGameWithDelay", 2f);
         }
     }
-
+    private void EndGameWithDelay()
+    {
+        GameManager.Instance.EndLevel();
+    }
 }

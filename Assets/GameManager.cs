@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
             StartCoroutine(Timer());
         }
         timerDisplay = FindObjectOfType<TimerDisplay>();
+        if(timerDisplay != null)
+        {
+            timerDisplay.UpdateTime(remainingTime);
+        }
     }
     IEnumerator Timer()
     {
@@ -54,6 +58,7 @@ public class GameManager : MonoBehaviour
 
         }
         Debug.Log("Time out!!!");
+        // enter Fail state/screen.
     }
     public void EndLevel()
     {
@@ -61,8 +66,11 @@ public class GameManager : MonoBehaviour
         var fade = FindObjectOfType<FadeEffect>();
         if (fade != null)
         {
-            fade.StartFadeOut();
+            fade.StartFadeOut(NextScene);
         }
-
+    }
+    private void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

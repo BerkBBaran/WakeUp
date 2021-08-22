@@ -24,6 +24,8 @@ public class HeartRateMonitor : MonoBehaviour
     public bool isClimbing = false;
 
     private PlayerController pCont;
+
+    bool hasDied = false;
     private void Awake()
     {
         pCont = FindObjectOfType<PlayerController>();
@@ -41,6 +43,11 @@ public class HeartRateMonitor : MonoBehaviour
                 {
                     // if exceeds this while climbing, goal achieved, player dies.
                     Debug.Log("You killed yourself while climbing this tiny hill. Good for you.");
+                    if (!hasDied)
+                    {
+                        Invoke("EndGameWithDelay", 2f);
+                        hasDied = true;
+                    }
                 }
             }
             else
@@ -110,5 +117,10 @@ public class HeartRateMonitor : MonoBehaviour
             Debug.Log("not climbing");
 
         }
+    }
+
+    private void EndGameWithDelay()
+    {
+        GameManager.Instance.EndLevel();
     }
 }
