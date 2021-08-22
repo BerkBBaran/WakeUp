@@ -404,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22404a08e73b4464888fe1bdfc483810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bee: {fileID: 753007260}
 --- !u!61 &187596957
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -417,7 +418,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.5820847, y: -0.46611333}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -428,7 +429,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.46, y: 1.63}
+  m_Size: {x: 0.16696808, y: 2.5622275}
   m_EdgeRadius: 0
 --- !u!212 &187596958
 SpriteRenderer:
@@ -1238,6 +1239,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.41, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &753007260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080836325264613719, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+  m_PrefabInstance: {fileID: 1358872996}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &782465629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,6 +1889,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7674428482139321640, guid: 4bb99d8528d8e7346a19b44772e942c8, type: 3}
   m_PrefabInstance: {fileID: 7674428483490191367}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1358872996
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.212
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613712, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613719, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_Name
+      value: beeAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080836325264613719, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 385be60b4d7974d49a3485c33993ad3b, type: 3}
 --- !u!114 &1369712777 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2379863404588366453, guid: 48c3b60a539b45d47ae2cee78213dad1, type: 3}
