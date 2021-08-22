@@ -59,9 +59,14 @@ public class PlayerInteraction : MonoBehaviour
             if (canDrag && dragableObjects.Count > 0 && !isDraging) //Drag grab
             {
                 isDraging = true;
+                plController.SetIsDraging(true);
+        
+
                 carriedDragable = closestDragable;
                 carriedDragable.OnDrag(this);
                 plController.moveSpeed /= 4;
+
+                plController.dragablePosition = carriedDragable.transform.position;
 
             }
             else if (isDraging)
@@ -69,6 +74,7 @@ public class PlayerInteraction : MonoBehaviour
                 carriedDragable.LeaveDrag(this);
                 carriedDragable = null;
                 isDraging = false;
+                plController.SetIsDraging(false);
                 plController.moveSpeed *= 4;
 
             }
