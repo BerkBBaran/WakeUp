@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     public Image interactButton;
     public TextMeshProUGUI InteractableTextTMP;
     public GameObject spaceButton;
+    public Image dropButton;
 
 
     [HideInInspector] public Inventory inventory;
@@ -79,9 +80,13 @@ public class PlayerInteraction : MonoBehaviour
 
             }
         }
+        if (!inventory.HasSpace() && !dropButton.enabled )
+        {
+            dropButton.enabled= true;
+        }
 
-        // Drop item
-        if (Input.GetKeyUp(KeyCode.G))
+            // Drop item
+            if (Input.GetKeyUp(KeyCode.G))
         {
             if (!inventory.HasSpace())
             {
@@ -91,6 +96,9 @@ public class PlayerInteraction : MonoBehaviour
                 inventory.item.gameObject.SetActive(true);
 
                 inventory.RemoveItem();
+
+                //UI
+                dropButton.enabled = false;
             }
         }
 
