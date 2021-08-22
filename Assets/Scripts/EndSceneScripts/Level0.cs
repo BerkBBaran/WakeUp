@@ -27,8 +27,7 @@ public class Level0 : MonoBehaviour
             {
                 character.SetActive(false);
                 JumpOffObject.SetActive(true);
-
-
+                Invoke("EndGameWithDelay", 2f);
             }
         }
     }
@@ -40,6 +39,11 @@ public class Level0 : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         inArea = false;
+    }
+
+    private void EndGameWithDelay()
+    {
+        GameManager.Instance.EndLevel();
     }
 }
 

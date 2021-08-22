@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,14 +18,14 @@ public class FadeEffect : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
-    public void StartFadeOut(float duration = 99f)
+    public void StartFadeOut(Action callback, float duration = 99f)
     {
         if(duration != 99f)
         {
             // use given duration
             fadeOutDuration = duration;
         }
-        StartCoroutine(FadeOut());
+        StartCoroutine(FadeOut(callback));
     }
     IEnumerator FadeIn()
     {
@@ -41,7 +42,7 @@ public class FadeEffect : MonoBehaviour
         fadePanel.gameObject.SetActive(false);
     }
 
-    IEnumerator FadeOut()
+    IEnumerator FadeOut(Action callback)
     {
         fadePanel.gameObject.SetActive(true);
         float timePassed = 0f;
@@ -53,5 +54,7 @@ public class FadeEffect : MonoBehaviour
             yield return null;
         }
         fadePanel.color = Color.black;
+
+        callback?.Invoke();
     }
 }
