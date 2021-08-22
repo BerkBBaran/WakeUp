@@ -11,7 +11,6 @@ public class Pickable : MonoBehaviour
 
     public string objectText;
 
-
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

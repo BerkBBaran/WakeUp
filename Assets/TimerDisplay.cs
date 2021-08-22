@@ -11,6 +11,11 @@ public class TimerDisplay : MonoBehaviour
     {
         int minsLeft = timeLeft / 60;
         int secsLeft = timeLeft - (minsLeft * 60);
-        timerText.text ="0"+ minsLeft.ToString() + ":" + secsLeft.ToString();
+        string secsPiece = secsLeft.ToString();
+        if(secsLeft < 10)
+        {
+            secsPiece = "0" + secsPiece;
+        }
+        timerText.text = "0" + minsLeft.ToString() + ":" + secsPiece;
     }
 }

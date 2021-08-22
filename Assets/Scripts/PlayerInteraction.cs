@@ -43,6 +43,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             Debug.LogError("Missing inventory script in scene!!");
         }
+
+        dropButton.gameObject.SetActive(false);
+        interactButton.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -65,7 +68,15 @@ public class PlayerInteraction : MonoBehaviour
 
                 carriedDragable = closestDragable;
                 carriedDragable.OnDrag(this);
-                plController.moveSpeed /= 4;
+
+                if (plController.isClimbing)
+                {
+                    plController.moveSpeed = plController.climbAndDragSpeed;
+                }
+                else
+                {
+                    plController.moveSpeed = plController.dragSpeed;
+                }
 
                 plController.dragablePosition = carriedDragable.transform.position;
 
@@ -76,29 +87,44 @@ public class PlayerInteraction : MonoBehaviour
                 carriedDragable = null;
                 isDraging = false;
                 plController.SetIsDraging(false);
-                plController.moveSpeed *= 4;
 
+                //plController.moveSpeed *= 4;
+                if (plController.isClimbing)
+                {
+                    plController.moveSpeed = plController.climbingSpeed;
+                }
+                else
+                {
+                    plController.moveSpeed = plController.defaultSpeed;
+                }
             }
         }
-        if (!inventory.HasSpace() && !dropButton.enabled )
+        if (!inventory.HasSpace())
         {
-            dropButton.enabled= true;
+            dropButton.gameObject.SetActive(true);
         }
 
             // Drop item
-            if (Input.GetKeyUp(KeyCode.G))
+        if (Input.GetKeyUp(KeyCode.G))
         {
             if (!inventory.HasSpace())
             {
                 // remove from inventory
                 // drop to ground
-                inventory.item.transform.position = dropPoint.position;
-                inventory.item.gameObject.SetActive(true);
+                if(closestItem is Goal)
+                {
+                    closestItem.OnInteract(this);
+                }
+                else
+                {
+                    inventory.item.transform.position = dropPoint.position;
+                    inventory.item.gameObject.SetActive(true);
 
-                inventory.RemoveItem();
+                    inventory.RemoveItem();
 
-                //UI
-                dropButton.enabled = false;
+                    //UI
+                    dropButton.gameObject.SetActive(false);
+                }
             }
         }
 
@@ -118,7 +144,10 @@ public class PlayerInteraction : MonoBehaviour
                 InteractableTextTMP.text = closestItem.objectText;
         }
     }
-
+    public void CloseDropUI()
+    {
+        dropButton.gameObject.SetActive(false);
+    }
 
     public void CanInteract(Pickable item)
     {
@@ -128,14 +157,15 @@ public class PlayerInteraction : MonoBehaviour
         // UI part 
         TriggerCount++;
         isCollided = true;
-        interactButton.GetComponent<Image>().enabled = true;
-
+        interactButton.gameObject.SetActive(true);
     }
     public void RemoveInteraction(Pickable item)
     {
         if (interactableObjects.Contains(item))
         {
             interactableObjects.Remove(item);
+            if (closestItem == item) closestItem = null;
+
             if (interactableObjects.Count == 0)
             {
                 canInteract = false;
@@ -148,7 +178,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             isCollided = false;
             InteractableTextTMP.text = null;
-            interactButton.GetComponent<Image>().enabled = false;
+            interactButton.gameObject.SetActive(false);
+
         }
     }
 

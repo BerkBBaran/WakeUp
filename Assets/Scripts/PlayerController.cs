@@ -19,16 +19,26 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = false;
     private bool facingLeft = false;
     private bool facingDown = false;
-    private bool isDraging = false;
+    public bool isDraging = false;
 
     Vector2 movement;
 
     HeartRateMonitor heartRateMonitor;
 
-  
+    public bool isClimbing = false;
+
+    public float defaultSpeed;
+    public float dragSpeed;
+    public float climbingSpeed;
+    public float climbAndDragSpeed;
 
     void Start()
     {
+        defaultSpeed = moveSpeed;
+        dragSpeed = moveSpeed / 4;
+        climbingSpeed = moveSpeed / 2;
+        climbAndDragSpeed = moveSpeed / 5;
+
         playerRB = GetComponent<Rigidbody2D>();
         myRender = GetComponent<SpriteRenderer>();
 

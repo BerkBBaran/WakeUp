@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 8b120ad2e07ae034d98653ce5b7f5bac
   - enabled: 1
+    path: Assets/Scenes/EntryCar.unity
+    guid: 1fc8493be57b86c4881f9761c1442bb6
+  - enabled: 1
     path: Assets/Scenes/Level_0.unity
     guid: 7d42d478cac49784295f9260bfbd6c11
   - enabled: 1
@@ -23,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalScene.unity
     guid: 9d18ae7525b3d7945a6cebf41ba0d34b
+  - enabled: 1
+    path: Assets/Scenes/FailScreen.unity
+    guid: 551403642ddc2cb4cb289dbaa6686026
   m_configObjects: {}

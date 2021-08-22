@@ -390,7 +390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 359d3a413ef52f24f95f2a4d2f9f3fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeOut: 300
+  beeSfx: {fileID: 0}
+  timeOut: 540
   remainingTime: 0
   timerDisplay: {fileID: 0}
 --- !u!4 &323941070

@@ -67,15 +67,10 @@ public class Goal : Pickable
                     // found a required item, use it for this Goal
                     inventory.RemoveItem();
                     requiredItems.Remove(itemName);
+                    playerInt.CloseDropUI();
                     if (requiredItems.Count == 0)
                     {   
-                        
                         isComplete = true;
-                        // this goal is complete, maybe add the combined/completed version to inventory for use?
-                        //inventory.Add(this);
-
-                        //// maybe turn of sprite
-                        //this.gameObject.SetActive(false);
                     }
                 }
                 else

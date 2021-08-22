@@ -104,7 +104,16 @@ public class HeartRateMonitor : MonoBehaviour
         if (collision.gameObject.CompareTag("ClimbingArea"))
         {
             isClimbing = true;
-            pCont.moveSpeed /= 2;
+            pCont.isClimbing = true;
+
+            if (pCont.isDraging)
+            {
+                pCont.moveSpeed = pCont.climbAndDragSpeed;
+            }
+            else
+            {
+                pCont.moveSpeed = pCont.climbingSpeed;
+            }
             Debug.Log("climbing now");
         }
     }
@@ -113,9 +122,17 @@ public class HeartRateMonitor : MonoBehaviour
         if (collision.gameObject.CompareTag("ClimbingArea"))
         {
             isClimbing = false;
-            pCont.moveSpeed *= 2;
-            Debug.Log("not climbing");
 
+            pCont.isClimbing = false;
+            Debug.Log("not climbing");
+            if (pCont.isDraging)
+            {
+                pCont.moveSpeed = pCont.dragSpeed;
+            }
+            else
+            {
+                pCont.moveSpeed = pCont.defaultSpeed;
+            }
         }
     }
 

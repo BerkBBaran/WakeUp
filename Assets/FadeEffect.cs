@@ -15,7 +15,7 @@ public class FadeEffect : MonoBehaviour
     void Start()
     {
         transparent = new Color(0,0,0,0);
-        StartCoroutine(FadeIn());
+        StartCoroutine(FadeIn(null));
     }
 
     public void StartFadeOut(Action callback, float duration = 99f)
@@ -27,7 +27,16 @@ public class FadeEffect : MonoBehaviour
         }
         StartCoroutine(FadeOut(callback));
     }
-    IEnumerator FadeIn()
+    public void StartFadeIn(Action callback, float duration = 99f)
+    {
+        if (duration != 99f)
+        {
+            // use given duration
+            fadeInDuration = duration;
+        }
+        StartCoroutine(FadeIn(callback));
+    }
+    IEnumerator FadeIn(Action callback)
     {
         fadePanel.gameObject.SetActive(true);
         float timePassed = 0f;
@@ -40,6 +49,8 @@ public class FadeEffect : MonoBehaviour
         }
         fadePanel.color = transparent;
         fadePanel.gameObject.SetActive(false);
+
+        callback?.Invoke();
     }
 
     IEnumerator FadeOut(Action callback)

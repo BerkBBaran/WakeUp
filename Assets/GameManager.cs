@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
+    public AudioClip beeSfx;
     public int timeOut = 300; // 5 mins
 
     public int remainingTime;
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Time out!!!");
         // enter Fail state/screen.
+        SceneManager.LoadScene("FailScreen");
     }
     public void EndLevel()
     {

@@ -10,19 +10,11 @@ public class Level2EndScript : MonoBehaviour
     //trigger
     private bool isGameOver = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     private void Awake()
     {   
         //find with name !!!!!!!
         goal = GameObject.Find("GoalBeher").GetComponent<Goal>();
     }
-
-    // Update is called once per frame
-
 
     void Update()
     {   
