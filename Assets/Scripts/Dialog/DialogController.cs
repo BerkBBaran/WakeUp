@@ -10,6 +10,11 @@ public class DialogController : MonoBehaviour
     public TextMeshProUGUI speakerName;
     public List<Line> lines;
 
+
+    public bool autoStart = true;
+    // auto start delay of dialog, after scene start.
+    public float timeDelayBeforeDialogStarts = 5f;
+
     // text reveal/writing speed
     public float timeBetweenCharacters = 0.2f;
 
@@ -26,9 +31,9 @@ public class DialogController : MonoBehaviour
         speakerName.gameObject.SetActive(false);
         // starts the dialog X secs after scene is loaded.
         // might wanna change this.
-        if(lines.Count > 0)
+        if(lines.Count > 0 && autoStart)
         {
-            Invoke("StartTyping", 5f);
+            Invoke("StartTyping", timeDelayBeforeDialogStarts);
         }
     }
 
@@ -45,6 +50,7 @@ public class DialogController : MonoBehaviour
     {
         textDisplay.text = "";
         speakerName.text = lines[index].speakerName;
+        speakerName.color = lines[index].speakerColor;
         if (lines[index].hasSoundEffect)
         {
             // play sound effect
@@ -70,6 +76,7 @@ public class DialogController : MonoBehaviour
         {
             // no more lines to show
             textDisplay.text = "";
+            speakerName.text = "";
             index = 0;
         }
     }
@@ -77,6 +84,7 @@ public class DialogController : MonoBehaviour
     {
         index = 0;
         textDisplay.text = "";
+        speakerName.text = "";
         StopAllCoroutines();
     }
 }
