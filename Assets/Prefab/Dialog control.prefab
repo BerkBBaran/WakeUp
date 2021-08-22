@@ -49,36 +49,46 @@ MonoBehaviour:
   - hasSoundEffect: 0
     soundEffect: {fileID: 0}
     speakerName: The Woman
+    speakerColor: {r: 0.3764706, g: 0.11764706, b: 0.50980395, a: 1}
     text: Do you remember ... honey.
   - hasSoundEffect: 0
     soundEffect: {fileID: 0}
     speakerName: The Girl
+    speakerColor: {r: 0.62352943, g: 0.18039216, b: 0, a: 1}
     text: 'Yeah, I miss there.... Mom.
 
 '
   - hasSoundEffect: 0
     soundEffect: {fileID: 0}
     speakerName: The Woman
+    speakerColor: {r: 1, g: 1, b: 1, a: 1}
     text: 'We may go there after . . . . They said we shouldn''t . . . you know. '
   - hasSoundEffect: 0
     soundEffect: {fileID: 0}
     speakerName: The Girl
+    speakerColor: {r: 1, g: 1, b: 1, a: 1}
     text: Yeah, you're right. Do you remember . . .?
   - hasSoundEffect: 0
     soundEffect: {fileID: 0}
     speakerName: The Woman
+    speakerColor: {r: 1, g: 1, b: 1, a: 1}
     text: The picnic spot?
   - hasSoundEffect: 0
     soundEffect: {fileID: 0}
     speakerName: The Girl
+    speakerColor: {r: 1, g: 1, b: 1, a: 1}
     text: "They love lemonade . . . Dad is terrified of them . . .\r"
   - hasSoundEffect: 0
     soundEffect: {fileID: 0}
     speakerName: The Woman
+    speakerColor: {r: 1, g: 1, b: 1, a: 1}
     text: "He . . . to them, it could've been dangerous. . . . but it was hilarious.\r"
   - hasSoundEffect: 0
     soundEffect: {fileID: 0}
     speakerName: The Girl
+    speakerColor: {r: 1, g: 1, b: 1, a: 1}
     text: '*Giggles* . . . bees.'
+  autoStart: 1
+  timeDelayBeforeDialogStarts: 5
   timeBetweenCharacters: 0.05
   delayBetweenLines: 2

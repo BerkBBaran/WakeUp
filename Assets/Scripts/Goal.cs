@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Goal : Pickable
 {
+
+    //for Talkable part
+    public TextMeshProUGUI overheadText;
+    private string incorrectItemText;
+    public float disappearTime = 3f;
+
     // limonata bardagi
     // bardak -> limon, su, seker
     public List<string> requiredItems = new List<string> { "Lemon", "Sugar" };
@@ -16,6 +23,9 @@ public class Goal : Pickable
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
+        // talkable
+        incorrectItemText = overheadText.text;
+        overheadText.text = "";
     }
     public override void OnInteract(PlayerInteraction playerInt)
     {
@@ -57,8 +67,18 @@ public class Goal : Pickable
                         //this.gameObject.SetActive(false);
                     }
                 }
+                else
+                {
+                    // show the item text on interact
+                    overheadText.gameObject.SetActive(true);
+                    overheadText.text = incorrectItemText;
+
+                    StopAllCoroutines();
+                    StartCoroutine(ShowOverheadText());
+                }
 
             }
+
             
         }
 
@@ -66,4 +86,14 @@ public class Goal : Pickable
         // is in inventory?
         // has all requirements met?
     }
+
+
+
+    private IEnumerator ShowOverheadText()
+    {
+        yield return new WaitForSeconds(disappearTime);
+        overheadText.text = "";
+    }
+
+
 }
