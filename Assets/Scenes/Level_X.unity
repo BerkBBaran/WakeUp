@@ -2925,7 +2925,7 @@ MonoBehaviour:
   postProcess: {fileID: 1712409876}
   startingRate: 80
   walkingLimit: 110
-  deathLimit: 90
+  deathLimit: 175
   walkingIncrease: 2
   climbingIncrease: 5
   decaySpeed: 2
