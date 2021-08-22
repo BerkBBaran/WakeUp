@@ -6,7 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
+
+    public AudioSource sfxSource;
     public AudioClip beeSfx;
+    public AudioClip fireplaceSfx;
+    public AudioClip carCrashSfx;
+
     public int timeOut = 300; // 5 mins
 
     public int remainingTime;
@@ -81,4 +86,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public void PlayCarCrash()
+    {
+        sfxSource.PlayOneShot(carCrashSfx);
+    }
+    public void PlayBeeSfx()
+    {
+        sfxSource.PlayOneShot(beeSfx);
+    }
+
 }

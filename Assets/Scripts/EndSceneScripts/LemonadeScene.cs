@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LemonadeScene : MonoBehaviour
@@ -9,24 +7,9 @@ public class LemonadeScene : MonoBehaviour
     public GameObject bee;
 
 
-    //private
-    private Rigidbody2D playerRB;
-
-
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,6 +19,8 @@ public class LemonadeScene : MonoBehaviour
             {
                 Debug.Log("Scene Over");
                 bee.SetActive(true);
+                GameManager.Instance.PlayBeeSfx();
+
                 collision.GetComponent<Animator>().enabled = false;
                 collision.GetComponent<PlayerController>().enabled = false;
                 

@@ -20,6 +20,7 @@ public class IntroAnim : MonoBehaviour
         yield return new WaitForSecondsRealtime(animDuration);
 
         // eye
+        GameManager.Instance.PlayCarCrash();
         var fade = FindObjectOfType<FadeEffect>();
         animParent.SetActive(false);
         crashed.SetActive(true);
