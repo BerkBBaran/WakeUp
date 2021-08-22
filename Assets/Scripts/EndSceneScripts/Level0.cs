@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Level0 : MonoBehaviour
 {
+
+    //Reference
+    public GameObject character;
+    public GameObject JumpOffObject;
+
+
     private bool inArea = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +25,10 @@ public class Level0 : MonoBehaviour
         {
             if (inArea)
             {
-                Debug.Log("End Scene");
-                //Finish Game
+                character.SetActive(false);
+                JumpOffObject.SetActive(true);
+
+
             }
         }
     }

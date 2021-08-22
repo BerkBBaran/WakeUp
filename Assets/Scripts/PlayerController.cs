@@ -10,23 +10,28 @@ public class PlayerController : MonoBehaviour
     public Animator playerAnimator;
     public float moveSpeed = 1f;
 
+    //Hide from Editor
+    [HideInInspector] public Vector2 dragablePosition;
+
     //private components
     SpriteRenderer myRender;
 
     private bool facingRight = false;
     private bool facingLeft = false;
     private bool facingDown = false;
+    private bool isDraging = false;
 
     Vector2 movement;
 
     HeartRateMonitor heartRateMonitor;
+
+  
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         myRender = GetComponent<SpriteRenderer>();
 
-        //playerAnimator = GetComponent<Animator>();
         heartRateMonitor = FindObjectOfType<HeartRateMonitor>();
     }
 
@@ -37,28 +42,33 @@ public class PlayerController : MonoBehaviour
 
         //Face Animation
 
-        //Left Right
-
-        if (Math.Abs(movement.x) < 0.01 && Math.Abs(movement.y) < 0.01 && !facingDown)
+        if (!isDraging)
         {
-            LookDown();
-        }
-        
-        else if (movement.x < 0 && !facingLeft)
-        {
-            TurnLeft();
-        }
-        else if ( movement.x > 0 && !facingRight)
-        {
-            TurnRight();
-        }
-        else if ((Math.Abs(movement.y) > 0.01) && !facingRight && (Math.Abs(movement.x) < 0.01))
-        {
-            TurnRight();
-        }
+            if (Math.Abs(movement.x) < 0.01 && Math.Abs(movement.y) < 0.01 && !facingDown)
+            {
+                LookDown();
+            }
 
+            else if (movement.x < 0 && !facingLeft)
+            {
+                TurnLeft();
+            }
+            else if (movement.x > 0 && !facingRight)
+            {
+                TurnRight();
+            }
+            else if ((Math.Abs(movement.y) > 0.01) && !facingRight && (Math.Abs(movement.x) < 0.01))
+            {
+                TurnRight();
+            }
 
-
+        }
+        else
+        {
+            FaceDragable();
+        }
+           
+      
 
     }
 
@@ -103,6 +113,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Face Directions
+    public void SetIsDraging(bool val)
+    {
+        isDraging = val;
+    }
+    public void FaceDragable()
+    {
+        if (playerRB.transform.position.x > dragablePosition.x)      
+            TurnLeft();
+        else
+            TurnRight();
+    }
 
 }
