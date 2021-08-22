@@ -75,7 +75,7 @@ public class HeartRateMonitor : MonoBehaviour
         }
 
         // Update UI
-        bpmText.text = "BPM: " + ((int)currentBpm).ToString();
+        bpmText.text = ((int)currentBpm).ToString();
     }
 
     private void Update()

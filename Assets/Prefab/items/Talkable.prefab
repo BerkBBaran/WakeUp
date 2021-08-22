@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: bla bla bla im a gun
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a2cfa952b34474449919daaf217dd81b, type: 2}
+  m_sharedMaterial: {fileID: -7175133280350915463, guid: a2cfa952b34474449919daaf217dd81b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
